@@ -19,32 +19,45 @@ let emailLabel = document.querySelector(".email-label");
 let passwordLabel = document.querySelector(".password-label");
 
 
-let fnameValue;
-let lnameValue;
+let fnameValue = fname.value;
+let lnameValue = lname.value;
 let emailValue;
-let passwordValue;
+let passwordValue = password.value;
 
 
+const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
 
 
 fname.addEventListener("input", (e) =>{
-    fnameValue = fname.value;    
+    fnameValue = fname.value; 
+    fnameImg.style.display = "none";
+    fnameLabel.style.display = "none";
 })
 
 lname.addEventListener("input", (e) =>{
     lnameValue = lname.value;  
+    lnameImg.style.display = "none";
+    lnameLabel.style.display = "none";
+    
 })
 
 email.addEventListener("input", (e) =>{
     emailValue = email.value;
+    if (emailPattern.test(emailValue)) {
+        emailImg.style.display = "none"
+        emailLabel.style.display = "none"
+    }
 })
 
 password.addEventListener("input", (e) =>{
     passwordValue = password.value;
+    passwordImg.style.display = "none";
+    passwordLabel.style.display = "none";
 })
 button.addEventListener("click", () => {
-    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    
+    console.log(fnameValue)
 
     if(fnameValue.length == 0){
         fnameImg.style.display = "block";
@@ -65,7 +78,7 @@ button.addEventListener("click", () => {
     if(!emailPattern.test(emailValue)){
         emailImg.style.display = "block"
         emailLabel.style.display = "flex"
-        email.value = "email@example/com"
+        email.placeholder = "email@example/com"
     }else{
         emailImg.style.display = "none"
         emailLabel.style.display = "none"
